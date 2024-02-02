@@ -1,6 +1,6 @@
 import { Label } from "../Label";
-import { BoxContainer} from "./style";
 import { Input } from "../Input";
+import { BoxContainer} from "./style";
 
 export const BoxInput = ({
     textLabel,
