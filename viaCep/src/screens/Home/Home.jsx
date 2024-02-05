@@ -19,18 +19,22 @@ export function Home() {
     //chamada API
     const APIget = async () => {
         try {
-            if (cep != "" && cep.length === 8) {
+            if (cep.length == 8) {
+
                 const endereco = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-
+                
                 if (endereco.error) {
-                    alert("Ërro na API")
+                    alert("Erro na API")
                 }
+                console.log(endereco.data)
+                setLogradouro(endereco.data.logradouro)
+                setBairro(endereco.data.bairro)
+                setCidade(endereco.data.localidade)
+                setUf(endereco.data.uf)
 
-                setLogradouro(endereco.logradouro)
-                setBairro(endereco.bairro)
-                setCidade(endereco.localidade)
-                setEstado(endereco.estado)
-                setUf(endereco.uf)
+                const ibge = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`)
+                console.log(ibge)
+                setEstado(ibge.data.nome)
             }
         } catch (error) {
             alert('Deu ruim')
@@ -39,7 +43,7 @@ export function Home() {
 
     useEffect(() => {
         APIget()
-    }), [];
+    }), [cep];
 
     return (
 
@@ -58,6 +62,7 @@ export function Home() {
                     placeholder={`CEP...`}
                     editable={true}
                     fieldValue={cep}
+                    KeyType="numeric"
                     onChangeText={(newValue) => {
                         setCep(newValue)
                     }}

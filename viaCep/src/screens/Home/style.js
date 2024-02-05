@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components/native"
 
 export const ScrollForm = styled.ScrollView`
    flex: 0.64;

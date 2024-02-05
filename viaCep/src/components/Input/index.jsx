@@ -14,7 +14,7 @@ export const Input = ({
             placeholder={placeholder}
             editable={editable}
             KeyType={KeyType}
-            fieldValue={fieldValue}
+            value={fieldValue}
             onChangeText={onChangeText}
             maxLenght={maxLenght}
         />
